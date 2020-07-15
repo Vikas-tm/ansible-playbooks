@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become_user: devopsadmin
+  become: yes
+  vars: 
+    motd_centos: "Welcome to Centos - Ansible Rocks"
+    motd_ubuntu: "Welcome to Ububtu - Ansible Rocks"
+  tasks:
+  - name: Configure motd in centos
+    copy:
+      content: "{{ motd_centos }}"
+      dest: /tmp/motd
+    when: ansible_distribution == "CentOS"
+  - name: Configure motd in ubuntu
+    copy:
+      content: "{{ motd_ubuntu }}"
+      dest: /tmp/motd
+    when: ansible_distribution == "Ubuntu"
+...

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become_user: devopsadmin
+  become: yes
+  tasks:
+  - name: Configure motd
+    copy:
+      content: Welcome to Ubuntu - Ansible Rocks
+      dest: /tmp/motd
+...
